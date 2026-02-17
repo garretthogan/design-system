@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brush-editor style – TUI Design System</title>
+  <link rel="stylesheet" href="../design-system.css" />
+</head>
+<body class="tui">
+  <div id="app">
+    <div id="viewport" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: #000;">
+      <p style="color: var(--tui-muted);">Viewport (3D canvas)</p>
+    </div>
+    <div id="controls-area">
+      <div class="controls-area-header-row">
+        <button type="button" class="controls-area-header" aria-expanded="true">
+          <span class="controls-area-chevron">▼</span>
+          Controls
+        </button>
+        <div style="display: flex; align-items: center; gap: var(--tui-gap); margin-left: auto;">
+          <select class="tab" aria-label="Tools">
+            <option>Object Editor</option>
+            <option>Level Builder</option>
+            <option>Floor Planner</option>
+          </select>
+          <button type="button" class="tab">+</button>
+          <button type="button" class="tab">↻</button>
+        </div>
+        <div style="display: flex; gap: var(--tui-gap);">
+          <button type="button" class="tab">Save</button>
+          <button type="button" class="tab">Load</button>
+        </div>
+      </div>
+      <div class="controls-area-content" style="display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: var(--tui-gap);">
+        <div class="controls-panels">
+          <div class="mode-panel">
+            <div class="panel">
+              <button type="button" class="panel-header">
+                <span class="panel-chevron">▼</span>
+                Brush Tools
+              </button>
+              <div class="panel-content">
+                <div class="control-row">
+                  <label for="tex">Texture</label>
+                  <select id="tex"><option>Default</option></select>
+                </div>
+                <div class="add-entity-actions">
+                  <button type="button">Add</button>
+                </div>
+                <div class="tool-divider"></div>
+                <div class="control-row">
+                  <label for="outline">Outline thickness</label>
+                  <input type="range" id="outline" min="1" max="6" step="0.5" value="2" />
+                  <span>2</span>
+                </div>
+                <div class="tool-divider"></div>
+                <div class="brush-actions">
+                  <button type="button">Move</button>
+                  <button type="button">Rotate</button>
+                  <button type="button">Scale</button>
+                  <button type="button" class="danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mode-panel">
+            <div class="panel">
+              <button type="button" class="panel-header">
+                <span class="panel-chevron">▼</span>
+                Maze Settings
+              </button>
+              <div class="panel-content">
+                <div class="panel-actions">
+                  <button type="button" class="primary">Generate</button>
+                  <button type="button">Iterate</button>
+                </div>
+                <div class="control-row">
+                  <label><input type="checkbox" checked /> Show preview</label>
+                </div>
+                <div class="control-row">
+                  <label for="cols">Columns</label>
+                  <input type="range" id="cols" min="5" max="30" value="10" />
+                  <span>10</span>
+                </div>
+                <div class="control-row">
+                  <label for="rows">Rows</label>
+                  <input type="range" id="rows" min="5" max="30" value="10" />
+                  <span>10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mode-panel">
+            <div class="panel">
+              <button type="button" class="panel-header">
+                <span class="panel-chevron">▼</span>
+                Lights
+              </button>
+              <div class="panel-content">
+                <div class="add-entity-actions">
+                  <button type="button">Add</button>
+                </div>
+                <div class="tool-divider"></div>
+                <p class="hint" style="margin: 0 0 var(--tui-gap);">Point Light</p>
+                <div class="control-row">
+                  <label for="lc">Color</label>
+                  <input type="color" id="lc" value="#ffffff" />
+                </div>
+                <div class="control-row">
+                  <label for="li">Intensity</label>
+                  <input type="range" id="li" min="0" max="10" step="0.1" value="1" />
+                  <span>1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="control-footer">
+            <a class="credit-link" href="#" rel="noopener noreferrer">Assets courtesy of Kenney</a>
+          </div>
+        </div>
+        <div class="controls-panels" style="max-height: 40vh; overflow-y: auto;">
+          <div class="panel">
+            <button type="button" class="panel-header">
+              <span class="panel-chevron">▼</span>
+              Camera
+            </button>
+            <div class="panel-content">
+              <div class="control-row">
+                <label for="zoom">Zoom speed</label>
+                <input type="range" id="zoom" min="0" max="5" step="0.1" value="0.25" />
+                <span>0.25</span>
+              </div>
+              <div class="control-row">
+                <label for="fly">Fly speed</label>
+                <input type="range" id="fly" min="0" max="20" step="0.5" value="6" />
+                <span>6</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <button type="button" class="panel-header">
+              <span class="panel-chevron">▼</span>
+              Scene Objects
+            </button>
+            <div class="panel-content">
+              <input type="search" placeholder="Search objects..." class="scene-list-search" style="margin-bottom: var(--tui-gap); width: 100%;" />
+              <div class="scene-list-content" style="min-height: 120px;">
+                <button type="button" class="scene-list-item">Floor</button>
+                <button type="button" class="scene-list-item">Wall</button>
+                <button type="button" class="scene-list-item">Light 1</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="export-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Export GLB</h2>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instructions">Select the objects and lights to export.</p>
+        <div class="export-list">
+          <details class="export-group">
+            <summary>Objects</summary>
+            <div class="export-items">
+              <label class="export-item"><input type="checkbox" /> Floor</label>
+              <label class="export-item"><input type="checkbox" /> Wall</label>
+            </div>
+          </details>
+          <details class="export-group">
+            <summary>Lights</summary>
+            <div class="export-items">
+              <label class="export-item"><input type="checkbox" /> Point Light</label>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button">Cancel</button>
+        <button type="button" class="primary">Export</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="entity-picker-dialog" style="position: fixed; inset: 0; z-index: 60; display: none; align-items: center; justify-content: center;">
+    <div style="background: var(--tui-bg); border: 2px solid var(--tui-line-strong); padding: var(--tui-pad-2); max-width: 90vw; display: grid; gap: var(--tui-gap);">
+      <h3 style="margin: 0;">Add entity</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--tui-gap);">
+        <button type="button" class="entity-picker-option"><span aria-hidden="true">▦</span><span>Floor</span></button>
+        <button type="button" class="entity-picker-option"><span aria-hidden="true">▤</span><span>Wall</span></button>
+        <button type="button" class="entity-picker-option"><span aria-hidden="true">◯</span><span>Cylinder</span></button>
+        <button type="button" class="entity-picker-option"><span aria-hidden="true">●</span><span>Point Light</span></button>
+        <button type="button" class="entity-picker-option"><span aria-hidden="true">◉</span><span>Spot Light</span></button>
+      </div>
+      <button type="button">Cancel</button>
+    </div>
+  </div>
+</body>
+</html>

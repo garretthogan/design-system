@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Art-grid style – TUI Design System</title>
+  <link rel="stylesheet" href="../design-system.css" />
+</head>
+<body class="tui">
+  <div id="app" class="app-layout-row">
+    <div id="controls-area">
+      <div class="controls-area-header-row">
+        <button type="button" class="controls-area-header" aria-expanded="true" title="Toggle controls">
+          <span class="controls-area-chevron">▼</span>
+          Controls
+        </button>
+      </div>
+      <div class="controls-area-content">
+        <div class="controls-panels">
+          <div class="panel">
+            <button type="button" class="panel-header" aria-expanded="true">
+              <span class="panel-chevron">▼</span>
+              Shapes
+            </button>
+            <div class="panel-content">
+              <ul class="scene-list-content" style="list-style: none; padding: 0; margin: 0; border: 0;">
+                <li class="scene-list-item">Rectangle</li>
+                <li class="scene-list-item">Circle</li>
+                <li class="scene-list-item">Line</li>
+                <li class="scene-list-empty">No shapes</li>
+              </ul>
+            </div>
+          </div>
+          <h2 style="margin: 0 0 var(--tui-gap); font-size: 1rem;">Canvas</h2>
+          <div class="control-row">
+            <label for="w">Width</label>
+            <input type="number" id="w" value="24" min="1" />
+          </div>
+          <div class="control-row">
+            <label for="h">Height</label>
+            <input type="number" id="h" value="24" min="1" />
+          </div>
+          <div class="floor-plan-actions" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button">Add</button>
+            <button type="button">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="canvas-area" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;">
+      <div
+        class="canvas-preview"
+        style="
+          flex: 1;
+          min-height: 200px;
+          border: 2px solid var(--tui-line-strong);
+          padding: var(--tui-pad-1);
+          background: var(--tui-bg);
+          background-image:
+            linear-gradient(rgba(0, 212, 255, 0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 212, 255, 0.5) 1px, transparent 1px);
+          background-size: 24px 24px;
+        "
+        aria-label="Canvas preview"
+      >
+        <p style="margin: auto; color: var(--tui-muted); text-align: center;">Canvas area</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

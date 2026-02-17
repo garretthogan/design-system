@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Element library – TUI Design System</title>
+  <link rel="stylesheet" href="../design-system.css" />
+  <style>
+    .lib-page {
+      padding: var(--tui-pad-2);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .lib-page > h1 { margin-bottom: var(--tui-gap-sm); }
+    .lib-page > p { margin-bottom: var(--tui-gap); }
+    .lib-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--tui-gap);
+      margin-bottom: var(--tui-gap-lg);
+    }
+    .lib-section h2 {
+      grid-column: 1 / -1;
+      margin: 0 0 var(--tui-gap-sm);
+      padding-bottom: var(--tui-gap-sm);
+      border-bottom: var(--tui-bw) solid var(--tui-line);
+    }
+    .lib-cell {
+      display: flex;
+      flex-direction: column;
+      gap: var(--tui-gap-sm);
+      padding: var(--tui-pad-2);
+      border: var(--tui-bw) solid var(--tui-line);
+      min-width: 0;
+    }
+    .lib-cell--full { grid-column: 1 / -1; }
+    .lib-label {
+      color: var(--tui-muted);
+      font-size: var(--tui-font-size-sm);
+      flex-shrink: 0;
+    }
+    .lib-cell > *:not(.lib-label) { margin: 0; }
+    .lib-cell pre { white-space: pre-wrap; word-break: break-all; }
+    .lib-cell table { max-width: 100%; }
+  </style>
+</head>
+<body class="tui">
+  <main class="lib-page">
+    <h1>Element library</h1>
+    <p>Every HTML element with the design system applied, in isolation.</p>
+    <p><a href="index.html">← Back to examples</a></p>
+
+    <section class="lib-section">
+      <h2>Text and phrasing</h2>
+      <div class="lib-cell"><span class="lib-label">a</span><a href="#">Link (cyan, hover pink)</a></div>
+      <div class="lib-cell"><span class="lib-label">abbr</span><p>The <abbr title="World Wide Web">WWW</abbr> is a network.</p></div>
+      <div class="lib-cell"><span class="lib-label">b / strong</span><p>Plain <b>bold</b> and <strong>strong</strong>.</p></div>
+      <div class="lib-cell"><span class="lib-label">cite</span><p>From <cite>Design Systems</cite>.</p></div>
+      <div class="lib-cell"><span class="lib-label">code / kbd / samp / var</span><p><code>const x = 1;</code> <kbd>Ctrl</kbd> <samp>out</samp> <var>n</var></p></div>
+      <div class="lib-cell"><span class="lib-label">del / ins</span><p><del>Removed</del> <ins>Inserted</ins>.</p></div>
+      <div class="lib-cell"><span class="lib-label">em / i</span><p><em>Emphasis</em> and <i>italic</i>.</p></div>
+      <div class="lib-cell"><span class="lib-label">mark</span><p>Here is <mark>highlighted</mark> text.</p></div>
+      <div class="lib-cell"><span class="lib-label">q</span><p>She said <q>Hello</q>.</p></div>
+      <div class="lib-cell"><span class="lib-label">ruby</span><p><ruby>漢<rt>かん</rt>字<rt>じ</rt></ruby></p></div>
+      <div class="lib-cell"><span class="lib-label">s</span><p><s>Strikethrough</s>.</p></div>
+      <div class="lib-cell"><span class="lib-label">small</span><p>Normal <small>small text</small>.</p></div>
+      <div class="lib-cell"><span class="lib-label">sub / sup</span><p>H<sub>2</sub>O and x<sup>2</sup>.</p></div>
+      <div class="lib-cell"><span class="lib-label">u</span><p><u>Underlined</u>.</p></div>
+      <div class="lib-cell"><span class="lib-label">span</span><p>A <span>span</span> inline.</p></div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Headings and paragraphs</h2>
+      <div class="lib-cell"><span class="lib-label">h1</span><h1>Heading 1</h1></div>
+      <div class="lib-cell"><span class="lib-label">h2</span><h2>Heading 2</h2></div>
+      <div class="lib-cell"><span class="lib-label">h3</span><h3>Heading 3</h3></div>
+      <div class="lib-cell"><span class="lib-label">h4</span><h4>Heading 4</h4></div>
+      <div class="lib-cell"><span class="lib-label">h5</span><h5>Heading 5</h5></div>
+      <div class="lib-cell"><span class="lib-label">h6</span><h6>Heading 6</h6></div>
+      <div class="lib-cell"><span class="lib-label">p</span><p>A paragraph of body text.</p></div>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">blockquote</span><blockquote>A quoted block.</blockquote></div>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">pre</span><pre>  preformatted
+  code block</pre></div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Lists and definitions</h2>
+      <div class="lib-cell"><span class="lib-label">ul / li</span><ul><li>One</li><li>Two</li></ul></div>
+      <div class="lib-cell"><span class="lib-label">ol / li</span><ol><li>First</li><li>Second</li></ol></div>
+      <div class="lib-cell"><span class="lib-label">dl / dt / dd</span>
+        <dl>
+          <dt>Term</dt>
+          <dd>Definition.</dd>
+          <dt>Another</dt>
+          <dd>Another definition.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Sections and grouping</h2>
+      <div class="lib-cell"><span class="lib-label">div</span><div>A div block.</div></div>
+      <div class="lib-cell"><span class="lib-label">main</span><main>Main content.</main></div>
+      <div class="lib-cell"><span class="lib-label">article</span><article>Article content.</article></div>
+      <div class="lib-cell"><span class="lib-label">section</span><section>Section content.</section></div>
+      <div class="lib-cell"><span class="lib-label">aside</span><aside>Aside content.</aside></div>
+      <div class="lib-cell"><span class="lib-label">nav</span><nav>Nav links.</nav></div>
+      <div class="lib-cell"><span class="lib-label">header</span><header>Header.</header></div>
+      <div class="lib-cell"><span class="lib-label">footer</span><footer>Footer.</footer></div>
+      <div class="lib-cell"><span class="lib-label">address</span><address>123 Street, City</address></div>
+      <div class="lib-cell"><span class="lib-label">figure / figcaption</span>
+        <figure>
+          <figcaption>A figure caption.</figcaption>
+        </figure>
+      </div>
+      <div class="lib-cell"><span class="lib-label">details / summary</span>
+        <details>
+          <summary>Click to expand</summary>
+          <p>Hidden content.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Tables</h2>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">table</span>
+        <table>
+          <caption>Table caption</caption>
+          <thead><tr><th>A</th><th>B</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>2</td></tr>
+            <tr><td>3</td><td>4</td></tr>
+          </tbody>
+          <tfoot><tr><td>Sum</td><td>10</td></tr></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Forms</h2>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">form, label, fieldset</span>
+        <form style="display: block;">
+          <div class="control-row">
+            <label for="t1">Label</label>
+            <input type="text" id="t1" value="Text input" />
+          </div>
+          <fieldset>
+            <legend>Legend</legend>
+            <p>Fieldset content.</p>
+          </fieldset>
+        </form>
+      </div>
+      <div class="lib-cell"><span class="lib-label">button</span><button type="button">Button</button></div>
+      <div class="lib-cell"><span class="lib-label">button.primary</span><button type="button" class="primary">Primary</button></div>
+      <div class="lib-cell"><span class="lib-label">button.danger</span><button type="button" class="danger">Danger</button></div>
+      <div class="lib-cell"><span class="lib-label">button.ok</span><button type="button" class="ok">OK</button></div>
+      <div class="lib-cell"><span class="lib-label">button[disabled]</span><button type="button" disabled>Disabled</button></div>
+      <div class="lib-cell"><span class="lib-label">input text</span><input type="text" value="Text" /></div>
+      <div class="lib-cell"><span class="lib-label">input search</span><input type="search" placeholder="Search" /></div>
+      <div class="lib-cell"><span class="lib-label">input number</span><input type="number" value="42" /></div>
+      <div class="lib-cell"><span class="lib-label">input email</span><input type="email" value="a@b.c" /></div>
+      <div class="lib-cell"><span class="lib-label">textarea</span><textarea rows="2">Textarea content.</textarea></div>
+      <div class="lib-cell"><span class="lib-label">select</span>
+        <select>
+          <option>Option A</option>
+          <option>Option B</option>
+        </select>
+      </div>
+      <div class="lib-cell"><span class="lib-label">checkbox</span><label><input type="checkbox" /> Checkbox</label></div>
+      <div class="lib-cell"><span class="lib-label">checkbox checked</span><label><input type="checkbox" checked /> Checked</label></div>
+      <div class="lib-cell"><span class="lib-label">radio</span><label><input type="radio" name="r" /> One</label> <label><input type="radio" name="r" checked /> Two</label></div>
+      <div class="lib-cell"><span class="lib-label">range</span><input type="range" min="0" max="100" value="50" /></div>
+      <div class="lib-cell"><span class="lib-label">color</span><input type="color" value="#00d4ff" /></div>
+      <div class="lib-cell"><span class="lib-label">output</span><output for="o">0</output></div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Media</h2>
+      <div class="lib-cell"><span class="lib-label">img</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Crect fill='%2300d4ff' width='80' height='40'/%3E%3Ctext x='40' y='25' fill='%23000' text-anchor='middle' font-size='12'%3Eimg%3C/text%3E%3C/svg%3E" alt="Placeholder" width="80" height="40" /></div>
+      <div class="lib-cell"><span class="lib-label">canvas</span><canvas width="80" height="40" title="Canvas"></canvas></div>
+      <div class="lib-cell"><span class="lib-label">picture</span><picture><span style="display:block;padding:var(--tui-pad-1);border:1px solid var(--tui-line);">picture</span></picture></div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Dividers and other</h2>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">hr</span><hr /></div>
+      <div class="lib-cell"><span class="lib-label">progress</span><progress value="60" max="100">60%</progress></div>
+      <div class="lib-cell"><span class="lib-label">data</span><p>Value: <data value="123">123</data></p></div>
+      <div class="lib-cell"><span class="lib-label">time</span><p><time datetime="2025-01-01">Jan 1, 2025</time></p></div>
+    </section>
+
+    <section class="lib-section">
+      <h2>Generic components</h2>
+      <div class="lib-cell"><span class="lib-label">.tab</span><button type="button" class="tab">Tab</button> <button type="button" class="tab active">Active</button></div>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">.control-row</span>
+        <div class="control-row">
+          <label for="cr">Label</label>
+          <input type="text" id="cr" value="Control" />
+          <span>42</span>
+        </div>
+      </div>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">.tool-divider</span><div class="tool-divider"></div></div>
+      <div class="lib-cell"><span class="lib-label">.hint</span><span class="hint">Hint text</span></div>
+      <div class="lib-cell"><span class="lib-label">.credit-link</span><a href="#" class="credit-link">Credit link</a></div>
+      <div class="lib-cell"><span class="lib-label">.scene-list-item</span><button type="button" class="scene-list-item">List item</button></div>
+      <div class="lib-cell"><span class="lib-label">.scene-list-empty</span><button type="button" class="scene-list-empty" disabled>Empty state</button></div>
+      <div class="lib-cell lib-cell--full"><span class="lib-label">.panel</span>
+        <div class="panel" style="max-width: 20rem;">
+          <button type="button" class="panel-header"><span class="panel-chevron">▼</span> Panel</button>
+          <div class="panel-content"><p style="margin:0;">Panel content.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
