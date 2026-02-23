@@ -1,6 +1,6 @@
 # Deploy built site to S3 under a subpath (e.g. ragtagthrone.com/design-system).
-# Requires repository secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
-# and AWS_S3_BUCKET. Optional: CLOUDFRONT_DISTRIBUTION_ID for cache invalidation.
+# Secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET.
+# Optional variable (not secret): CLOUDFRONT_DISTRIBUTION_ID for cache invalidation.
 
 name: Deploy to S3
 
@@ -42,8 +42,8 @@ jobs:
             --cache-control "public, max-age=3600"
 
       - name: Invalidate CloudFront
-        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        if: vars.CLOUDFRONT_DISTRIBUTION_ID != ''
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
             --paths "/design-system/*"

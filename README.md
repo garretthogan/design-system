@@ -62,7 +62,7 @@ The workflow in `.github/workflows/deploy.yml` builds and syncs the site to S3 u
 | `AWS_SECRET_ACCESS_KEY` | Corresponding secret key |
 | `AWS_S3_BUCKET` | Bucket that backs your site (same bucket as the rest of ragtagthrone.com) |
 | `AWS_REGION` | Optional; defaults to `us-east-1` |
-| `CLOUDFRONT_DISTRIBUTION_ID` | Optional; if set, triggers a cache invalidation for `/design-system/*` after upload |
+| `CLOUDFRONT_DISTRIBUTION_ID` | Optional **variable** (Settings → Actions → Variables); if set, triggers a cache invalidation for `/design-system/*` after upload |
 
 Ensure the bucket (or CloudFront origin) is the one your Route 53 domain points to. The workflow uploads `dist/` into the **design-system/** prefix, so the app is available at `https://ragtagthrone.com/design-system/`.
 
