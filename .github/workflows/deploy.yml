@@ -1,0 +1,49 @@
+# Deploy built site to S3 under a subpath (e.g. ragtagthrone.com/design-system).
+# Requires repository secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
+# and AWS_S3_BUCKET. Optional: CLOUDFRONT_DISTRIBUTION_ID for cache invalidation.
+
+name: Deploy to S3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+      - ".github/**"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          chmod +x scripts/build.sh
+          ./scripts/build.sh
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Sync to S3
+        run: |
+          aws s3 sync dist/ "s3://${{ secrets.AWS_S3_BUCKET }}/design-system/" \
+            --delete \
+            --cache-control "public, max-age=3600"
+
+      - name: Invalidate CloudFront
+        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/design-system/*"

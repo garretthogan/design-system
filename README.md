@@ -50,6 +50,31 @@ Override in your project without editing the design system:
 ### Borders
 - `--tui-bw`, `--tui-radius`
 
+## Deploying to your domain (S3 + Route 53)
+
+The workflow in `.github/workflows/deploy.yml` builds and syncs the site to S3 under the `design-system/` prefix so it can be served at e.g. **ragtagthrone.com/design-system**.
+
+**Required repository secrets** (Settings → Secrets and variables → Actions):
+
+| Secret | Description |
+|--------|-------------|
+| `AWS_ACCESS_KEY_ID` | IAM user with `s3:PutObject`, `s3:DeleteObject` on the bucket |
+| `AWS_SECRET_ACCESS_KEY` | Corresponding secret key |
+| `AWS_S3_BUCKET` | Bucket that backs your site (same bucket as the rest of ragtagthrone.com) |
+| `AWS_REGION` | Optional; defaults to `us-east-1` |
+| `CLOUDFRONT_DISTRIBUTION_ID` | Optional; if set, triggers a cache invalidation for `/design-system/*` after upload |
+
+Ensure the bucket (or CloudFront origin) is the one your Route 53 domain points to. The workflow uploads `dist/` into the **design-system/** prefix, so the app is available at `https://ragtagthrone.com/design-system/`.
+
+## Deploying under a subpath (manual)
+
+To serve the app at a route like `example.com/design-system` without using the S3 workflow:
+
+1. Run `./scripts/build.sh`.
+2. Copy the contents of `dist/` into your main site’s `design-system/` directory, then deploy the main site.
+
+The build uses a relative `<base href="." />`, so the same `dist/` works when served from the root (e.g. local dev) and when served under a subpath.
+
 ## Examples
 
 Static, non-functional example UIs are in `examples/`:
